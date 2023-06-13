@@ -1,4 +1,5 @@
 import Contact from "../models/contact";
+import User from "../models/user";
 
 const routes = (router) => {
   router.post("/contacts", async (req, res) => {
@@ -47,6 +48,37 @@ const routes = (router) => {
       }
 
       res.json({ message: "Kontakt usunięty" });
+    } catch (error) {
+      res.status(500).json({ message: "Błąd serwera" });
+    }
+  });
+
+  router.post("/register", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+
+      const newUser = new User({ username, password });
+      await newUser.save();
+
+      res.status(201).json({ message: "Rejestracja zakończona sukcesem" });
+    } catch (error) {
+      res.status(500).json({ message: "Błąd serwera" });
+    }
+  });
+
+  router.post("/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+
+      const user = await User.findOne({ username, password });
+
+      if (!user) {
+        return res
+          .status(401)
+          .json({ message: "Nieprawidłowe dane logowania" });
+      }
+
+      res.status(200).json({ message: "Zalogowano pomyślnie" });
     } catch (error) {
       res.status(500).json({ message: "Błąd serwera" });
     }
