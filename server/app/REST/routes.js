@@ -1,8 +1,11 @@
 import Contact from "../models/contact";
 import User from "../models/user";
+import auth from "../middleware/auth";
+import jwt from "jsonwebtoken";
+import config from "../config";
 
 const routes = (router) => {
-  router.post("/contacts", async (req, res) => {
+  router.post("/contacts", auth, async (req, res) => {
     try {
       const { name, email, phone } = req.body;
 
@@ -16,7 +19,7 @@ const routes = (router) => {
     }
   });
 
-  router.put("/contacts/:id", async (req, res) => {
+  router.put("/contacts/:id", auth, async (req, res) => {
     try {
       const { id } = req.params;
       const { name, email, phone } = req.body;
@@ -37,7 +40,7 @@ const routes = (router) => {
     }
   });
 
-  router.delete("/contacts/:id", async (req, res) => {
+  router.delete("/contacts/:id", auth, async (req, res) => {
     try {
       const { id } = req.params;
 
@@ -78,7 +81,9 @@ const routes = (router) => {
           .json({ message: "Nieprawidłowe dane logowania" });
       }
 
-      res.status(200).json({ message: "Zalogowano pomyślnie" });
+      const token = jwt.sign({ userId: user._id }, config.JwtSecret);
+
+      res.status(200).json({ message: "Zalogowano pomyślnie", token });
     } catch (error) {
       res.status(500).json({ message: "Błąd serwera" });
     }

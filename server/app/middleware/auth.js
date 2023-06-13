@@ -2,20 +2,21 @@ import jwt from "jsonwebtoken";
 import config from "../config";
 
 const auth = (req, res, next) => {
-  let token = req.headers["x-auth-token"] || req.headers["authorization"];
-  if (token && token.startsWith("Bearer ")) {
-    token = token.slice(7, token.length);
-  }
+  const token = req.headers.authorization;
 
   if (!token) {
-    return res.status(401).send("Access denied. No token provided");
+    return res.status(401).json({ message: "Brak tokena uwierzytelniającego" });
   }
 
   try {
-    req.user = jwt.verify(token, config.JwtSecret);
+    const decoded = jwt.verify(token, config.JwtSecret);
+    req.user = decoded;
+
     next();
-  } catch (e) {
-    res.status(400).send("Invalid token");
+  } catch (error) {
+    return res
+      .status(401)
+      .json({ message: "Nieprawidłowy token uwierzytelniający" });
   }
 };
 
