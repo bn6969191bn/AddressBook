@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, tap } from 'rxjs';
+import { LoginResponse } from '../models/login.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,18 +20,26 @@ export class AuthService {
     return this.http.post(url, body);
   }
 
-  login(username: string, password: string): Observable<any> {
+  login(username: string, password: string): Observable<LoginResponse> {
     const url = `${this.baseUrl}/login`;
     const body = { username, password };
-    return this.http.post(url, body);
+    return this.http.post<LoginResponse>(url, body).pipe(
+      tap((response) => {
+        console.log('Odpowiedź po zalogowaniu:', response);
+        const token = response.token;
+        this.setToken(token);
+      })
+    );
   }
 
   setToken(token: string) {
     localStorage.setItem('token', token);
     this.tokenSubject.next(token);
+    console.log(token);
   }
 
   getToken(): string | null {
+    console.log(localStorage.getItem('token'));
     return localStorage.getItem('token');
   }
 
