@@ -35,4 +35,15 @@ export class ContactListComponent implements OnInit {
   editContact(contact: Contact) {
     this.router.navigate(['/edit-contact', contact.id]);
   }
+
+  deleteContact(contactId: string): void {
+    this.contactService.deleteContact(contactId).subscribe(() => {
+      console.log('Kontakt został usunięty');
+      this.refreshContacts();
+    });
+  }
+
+  refreshContacts(): void {
+    this.loadContacts();
+  }
 }
