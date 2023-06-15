@@ -17,6 +17,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { HeadingPipe } from './pipes/heading.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ContactDetailsComponent,
     HomeComponent,
     NavbarComponent,
+    HeadingPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [
