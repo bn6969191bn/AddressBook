@@ -18,6 +18,7 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeadingPipe } from './pipes/heading.pipe';
+import { BoldDirective } from './directives/bold.directive';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { HeadingPipe } from './pipes/heading.pipe';
     HomeComponent,
     NavbarComponent,
     HeadingPipe,
+    BoldDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [
