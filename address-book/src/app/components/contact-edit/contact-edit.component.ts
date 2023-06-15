@@ -23,19 +23,15 @@ export class ContactEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('Przed wywołaniem loadContact()');
     this.loadContact();
-    console.log('Po wywołaniu loadContact()');
   }
 
   loadContact() {
     const contactId = this.route.snapshot.paramMap.get('id');
-    console.log(contactId);
 
     if (contactId) {
       this.contactService.getContact(contactId).subscribe(
         (contact) => {
-          console.log('Pobrany kontakt:', contact);
           this.contact.id = contactId;
           this.contact = contact;
         },

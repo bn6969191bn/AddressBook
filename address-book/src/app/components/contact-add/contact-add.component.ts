@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ContactAddComponent {
   contact: Contact = {
-    id: this.generateUniqueId(),
+    id: '',
     name: '',
     email: '',
     phone: '',
@@ -28,9 +28,5 @@ export class ContactAddComponent {
         console.error('Błąd podczas dodawania kontaktu', error);
       }
     );
-  }
-
-  generateUniqueId(): string {
-    return Date.now().toString();
   }
 }

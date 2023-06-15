@@ -17,7 +17,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe(
       (response) => {
         console.log('Zalogowano pomyślnie');
-        this.router.navigate(['/']);
+        this.router.navigate(['/contacts']);
 
         const token = response.token;
       },

@@ -33,7 +33,6 @@ export class ContactListComponent implements OnInit {
   }
 
   editContact(contact: Contact) {
-    console.log(contact.id);
     this.router.navigate(['/edit-contact', contact.id]);
   }
 }

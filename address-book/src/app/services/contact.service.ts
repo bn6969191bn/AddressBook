@@ -33,8 +33,7 @@ export class ContactService {
   }
 
   updateContact(contact: any): Observable<any> {
-    const url = `${this.baseUrl}/contacts/${contact.id}`;
-    console.log(contact);
+    const url = `${this.baseUrl}/contacts/${contact._id}`;
     return this.http.put(url, contact);
   }
 
