@@ -6,8 +6,11 @@ import { ContactListComponent } from './components/contact-list/contact-list.com
 import { ContactAddComponent } from './components/contact-add/contact-add.component';
 import { ContactEditComponent } from './components/contact-edit/contact-edit.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'contacts', component: ContactListComponent },
