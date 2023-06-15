@@ -7,16 +7,33 @@ import { ContactAddComponent } from './components/contact-add/contact-add.compon
 import { ContactEditComponent } from './components/contact-edit/contact-edit.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'contacts', component: ContactListComponent },
-  { path: 'add-contact', component: ContactAddComponent },
-  { path: 'edit-contact/:id', component: ContactEditComponent },
-  { path: 'contacts/:id', component: ContactDetailsComponent },
+  {
+    path: 'contacts',
+    component: ContactListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-contact',
+    component: ContactAddComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-contact/:id',
+    component: ContactEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'contacts/:id',
+    component: ContactDetailsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
