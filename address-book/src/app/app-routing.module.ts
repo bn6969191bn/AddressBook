@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { ContactAddComponent } from './components/contact-add/contact-add.component';
 import { ContactEditComponent } from './components/contact-edit/contact-edit.component';
+import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'contacts', component: ContactListComponent },
   { path: 'add-contact', component: ContactAddComponent },
   { path: 'edit-contact/:id', component: ContactEditComponent },
+  { path: 'contacts/:id', component: ContactDetailsComponent },
 ];
 
 @NgModule({

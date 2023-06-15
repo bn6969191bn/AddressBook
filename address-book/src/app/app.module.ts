@@ -14,6 +14,7 @@ import { ContactService } from './services/contact.service';
 import { ContactAddComponent } from './components/contact-add/contact-add.component';
 import { ContactEditComponent } from './components/contact-edit/contact-edit.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ContactListComponent,
     ContactAddComponent,
     ContactEditComponent,
+    ContactDetailsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [
