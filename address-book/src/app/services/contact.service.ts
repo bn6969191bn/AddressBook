@@ -37,8 +37,8 @@ export class ContactService {
     return this.http.put(url, contact);
   }
 
-  deleteContact(id: number): Observable<any> {
-    const url = `${this.baseUrl}/contacts/${id}`;
+  deleteContact(contactId: string): Observable<any> {
+    const url = `${this.baseUrl}/contacts/${contactId}`;
     return this.http.delete(url);
   }
 }

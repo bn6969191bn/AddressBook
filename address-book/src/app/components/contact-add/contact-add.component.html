@@ -1,33 +1,42 @@
-<form (ngSubmit)="addContact()">
-  <div class="form-group">
-    <label for="name">Imię i nazwisko:</label>
-    <input
-      type="text"
-      id="name"
-      name="name"
-      [(ngModel)]="contact.name"
-      class="form-control"
-    />
+<div class="container">
+  <h2>Dodaj kontakt</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="addContact()">
+        <div class="form-group">
+          <label for="name">Imię i nazwisko:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            [(ngModel)]="contact.name"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="contact.email"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefon:</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            [(ngModel)]="contact.phone"
+            class="form-control"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 20px">
+          Dodaj kontakt
+        </button>
+      </form>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      [(ngModel)]="contact.email"
-      class="form-control"
-    />
-  </div>
-  <div class="form-group">
-    <label for="phone">Telefon:</label>
-    <input
-      type="text"
-      id="phone"
-      name="phone"
-      [(ngModel)]="contact.phone"
-      class="form-control"
-    />
-  </div>
-  <button type="submit" class="btn btn-primary">Dodaj kontakt</button>
-</form>
+</div>
