@@ -5,6 +5,31 @@ import jwt from "jsonwebtoken";
 import config from "../config";
 
 const routes = (router) => {
+  router.get("/contacts", auth, async (req, res) => {
+    try {
+      const contacts = await Contact.find();
+      res.json(contacts);
+    } catch (error) {
+      res.status(500).json({ message: "Błąd serwera" });
+    }
+  });
+
+  router.get("/contacts/:id", auth, async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const contact = await Contact.findById(id);
+
+      if (!contact) {
+        return res.status(404).json({ message: "Kontakt nie znaleziony" });
+      }
+
+      res.json(contact);
+    } catch (error) {
+      res.status(500).json({ message: "Błąd serwera" });
+    }
+  });
+
   router.post("/contacts", auth, async (req, res) => {
     try {
       const { name, email, phone } = req.body;
